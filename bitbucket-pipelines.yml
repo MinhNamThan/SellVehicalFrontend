@@ -1,0 +1,12 @@
+image: node:16
+
+pipelines:
+    branches:
+        develop:
+            - step:
+                  caches:
+                      - node
+                  script:
+                      - yarn
+                      - yarn build
+                      - scp -o stricthostkeychecking=no -r dist/* root@admin-v2-uat.javis.io:~/smart_admin/bao_gia
